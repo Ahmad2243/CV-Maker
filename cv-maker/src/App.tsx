@@ -348,8 +348,55 @@ function App() {
   };
 
   /*----------------------------------------------------------------*/
+  /*childContainer6----------------------------------------------------------------*/
+  const [expandCertificateAccordion, setExpandCertificateAccordion] =
+    useState<boolean>(false);
+  const [submittedCertificate, setSubmittedCertificate] = useState([
+    {
+      certificate: '',
+    },
+  ]);
 
-  console.log('submittedSkills', submittedSkills);
+  const handleExpandCertificate = () => {
+    setExpandCertificateAccordion((prev) => !prev);
+  };
+
+  const handleCertificateInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    certificateIndex: number
+  ) => {
+    const previousCertificate = [...submittedCertificate];
+    previousCertificate[certificateIndex].certificate = event.target.value;
+    setSubmittedCertificate(previousCertificate);
+  };
+
+  const preventCertificateBubbling = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    event.stopPropagation();
+  };
+
+  const handleAddCertificate = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.stopPropagation();
+    const newSubmission = {
+      certificate: '',
+    };
+    setSubmittedCertificate([...submittedCertificate, newSubmission]);
+  };
+
+  const handleCertificateDustbinClick = (
+    certificateIndex: Number,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.stopPropagation();
+    const updatedValues = submittedCertificate.filter(
+      (_, i) => i !== certificateIndex
+    );
+    setSubmittedCertificate(updatedValues);
+  };
+  /*----------------------------------------------------------------*/
   return (
     <>
       <div className="container1">
@@ -520,9 +567,40 @@ function App() {
           )}
         </div>
         *-----------------------------------------------------------------*
-        <div className="childContainer6">
+        <div onClick={handleExpandCertificate} className="childContainer6">
           <button>
             <h2>Certifications</h2>
+            {expandCertificateAccordion && (
+              <>
+                {submittedCertificate.map((certificate, certificateIndex) => (
+                  <div key={certificateIndex} id="submitted-skills">
+                    <input
+                      className="inputCertificate"
+                      type="text"
+                      value={certificate.certificate}
+                      onChange={(event) =>
+                        handleCertificateInputChange(event, certificateIndex)
+                      }
+                      placeholder="Enter your Certificate"
+                      onClick={preventCertificateBubbling}
+                    ></input>
+                    <button
+                      type="button"
+                      id="dustbin"
+                      onClick={(event) =>
+                        handleCertificateDustbinClick(certificateIndex, event)
+                      }
+                    >
+                      🗑️
+                    </button>
+                  </div>
+                ))}
+
+                <button id="edu" onClick={handleAddCertificate}>
+                  + Skills
+                </button>
+              </>
+            )}
           </button>
         </div>
         *-----------------------------------------------------------------*
