@@ -396,6 +396,7 @@ function App() {
     );
     setSubmittedCertificate(updatedValues);
   };
+
   /*----------------------------------------------------------------*/
   return (
     <>
@@ -641,6 +642,13 @@ function App() {
           {submittedSkills.map((value, skillsIndex) => (
             <div key={skillsIndex}>
               <h3>{value.skills}</h3>
+            </div>
+          ))}
+
+          <h1>Certification</h1>
+          {submittedCertificate.map((value, certificateIndex) => (
+            <div key={certificateIndex}>
+              <h3>{value.certificate}</h3>
             </div>
           ))}
         </div>
