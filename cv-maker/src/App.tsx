@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
   /*childContainer1----------------------------------------------------------------*/
-  const [showPersonal, setShowPersonal] = useState<Boolean>(false);
+  const [showPersonal, setShowPersonal] = useState<boolean>(false);
   const [inputName, setInputName] = useState<string>('Ahmad Rabbani');
   const [inputTitle, setInputTitle] = useState<string>('Developer');
   const [inputNumber, setInputNumber] = useState<string>('0333-5632563');
@@ -25,30 +25,40 @@ function App() {
     setShowPersonal(false);
   };
 
-  const handlePersonalNameChange = (event) => {
+  const handlePersonalNameChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setInputName(event.target.value);
   };
 
-  const handlePersonalTitleChange = (event) => {
+  const handlePersonalTitleChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setInputTitle(event.target.value);
   };
 
-  const handlePersonalNumberChange = (event) => {
+  const handlePersonalNumberChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setInputNumber(event.target.value);
   };
 
-  const handlePersonalEmailChange = (event) => {
+  const handlePersonalEmailChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setInputEmail(event.target.value);
   };
 
-  const handlePersonalLocationChange = (event) => {
+  const handlePersonalLocationChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setInputLocation(event.target.value);
   };
 
   /*-------------------------------------------------------------------------------*/
 
   /*childContainer2----------------------------------------------------------------*/
-  const [showSummary, setShowSummary] = useState<Boolean>(false);
+  const [showSummary, setShowSummary] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>(
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere minus, saepe iste, nemo dolores necessitatibus perspiciatis velit esse distinctio consequuntur recusandae asperiores sunt veritatis eum quibusdam culpa vero facilis eos?'
   );
@@ -61,7 +71,9 @@ function App() {
     setShowSummary(false);
   };
 
-  const handleSummaryInputChange = (event) => {
+  const handleSummaryInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setInputValue(event.target.value);
   };
 
@@ -79,58 +91,73 @@ function App() {
   );
   const [inputStartDate, setInputStartDate] = useState<number>(2023);
   const [inputEndDate, setInputEndDate] = useState<number>(2026);
-  const [submittedValues, setSubmittedValues] = useState([]);
+  const [submittedValues, setSubmittedValues] = useState<
+    {
+      institutes: string;
+      degree: string;
+      startDate: number;
+      endDate: number;
+    }[]
+  >([]);
 
   const handleExpandEducation = () => {
     setExpandEducationAccordion((prev) => !prev);
   };
 
-  const handleEducationClick = (event) => {
+  const handleEducationClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     setShowEducationModal(true);
   };
 
-  const handleEducationButtonClose = (event) => {
+  const handleEducationButtonClose = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.stopPropagation();
     setShowEducationModal(false);
   };
 
-  const handleInstitutesChange = (event) => {
+  const handleInstitutesChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setInputInstitutes(event.target.value);
   };
 
-  const handleDegreeChange = (event) => {
+  const handleDegreeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputDegree(event.target.value);
   };
 
-  const handleStartDateChange = (event) => {
-    setInputStartDate(event.target.value);
+  const handleStartDateChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setInputStartDate(parseInt(event.target.value, 10));
   };
 
-  const handleEndDateChange = (event) => {
-    setInputEndDate(event.target.value);
+  const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputEndDate(parseInt(event.target.value, 10));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newSubmission = {
       institutes: inputInstitutes,
       degree: inputDegree,
       startDate: inputStartDate,
       endDate: inputEndDate,
-      job: inputJobTitle,
     };
     setSubmittedValues([...submittedValues, newSubmission]);
     setShowEducationModal(false);
     clearForm();
   };
 
-  const handleDustbinClick = (index, event) => {
+  const handleDustbinClick = (
+    index: number,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.stopPropagation();
     const updatedValues = submittedValues.filter((_, i) => i !== index);
     setSubmittedValues(updatedValues);
     if (updatedValues.length === 0) {
-      clearForm(); // Clear form fields if no values are left
+      clearForm();
     }
   };
 
@@ -141,7 +168,10 @@ function App() {
     setInputEndDate(0);
   };
 
-  const handleSubmittedValueClick = (index, event) => {
+  const handleSubmittedValueClick = (
+    index: number,
+    event: React.MouseEvent<HTMLDivElement>
+  ) => {
     event.stopPropagation();
     setInputInstitutes(submittedValues[index].institutes);
     setInputDegree(submittedValues[index].degree);
@@ -153,50 +183,75 @@ function App() {
   /*----------------------------------------------------------------*/
   /*childContainer4----------------------------------------------------------------*/
   const [expandProfessionalAccordion, setExpandProfessionalAccordion] =
-    useState(false);
-  const [showProfessionalModal, setShowProfessionalModal] = useState(false);
-  const [inputJobTitle, setInputJobTitle] = useState('Front-End Developer');
-  const [inputCompanyName, setInputCompanyName] = useState('Techwards');
-  const [inputDescription, setInputDescription] = useState('');
-  const [inputProStartDate, setInputProStartDate] = useState('2023');
-  const [inputProEndDate, setInputProEndDate] = useState('2026');
-  const [proSubmittedValues, setProSubmittedValues] = useState([]);
+    useState<boolean>(false);
+  const [showProfessionalModal, setShowProfessionalModal] =
+    useState<boolean>(false);
+  const [inputJobTitle, setInputJobTitle] = useState<string>(
+    'Front-End Developer'
+  );
+  const [inputCompanyName, setInputCompanyName] = useState<string>('Techwards');
+  const [inputDescription, setInputDescription] = useState<string>('');
+  const [inputProStartDate, setInputProStartDate] = useState<string>('2023');
+  const [inputProEndDate, setInputProEndDate] = useState<string>('2026');
+  const [proSubmittedValues, setProSubmittedValues] = useState<
+    {
+      proStartDate: string;
+      proEndDate: string;
+      job: string;
+      company: string;
+      description: string;
+    }[]
+  >([]);
 
   const handleExpandProfessional = () => {
     setExpandProfessionalAccordion((prev) => !prev);
   };
 
-  const handleProfessionalClick = (event) => {
+  const handleProfessionalClick = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     event.stopPropagation();
     setShowProfessionalModal(true);
   };
 
-  const handleProfessionalButtonClose = (event) => {
+  const handleProfessionalButtonClose = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     event.stopPropagation();
     setShowProfessionalModal(false);
   };
 
-  const handleJobTitleChange = (event) => {
+  const handleJobTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputJobTitle(event.target.value);
   };
 
-  const handleCompanyNameChange = (event) => {
+  const handleCompanyNameChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setInputCompanyName(event.target.value);
   };
 
-  const handleDescriptionChange = (event) => {
+  const handleDescriptionChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setInputDescription(event.target.value);
   };
 
-  const handleProStartDateChange = (event) => {
+  const handleProStartDateChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setInputProStartDate(event.target.value);
   };
 
-  const handleProEndDateChange = (event) => {
+  const handleProEndDateChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setInputProEndDate(event.target.value);
   };
 
-  const handleProSubmit = (event) => {
+  const handleProSubmit = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     event.preventDefault();
     const newSubmission = {
       proStartDate: inputProStartDate,
@@ -211,7 +266,10 @@ function App() {
     proClearForm();
   };
 
-  const handleProDustbinClick = (proindex, event) => {
+  const handleProDustbinClick = (
+    proindex: number,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     event.stopPropagation();
     const updatedValues = proSubmittedValues.filter((_, i) => i !== proindex);
     setProSubmittedValues(updatedValues);
@@ -228,7 +286,10 @@ function App() {
     setInputDescription('');
   };
 
-  const handleProSubmittedValueClick = (proindex, event) => {
+  const handleProSubmittedValueClick = (
+    proindex: number,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     event.stopPropagation();
     setInputProStartDate(proSubmittedValues[proindex].proStartDate);
     setInputProEndDate(proSubmittedValues[proindex].proEndDate);
@@ -240,7 +301,8 @@ function App() {
 
   /*----------------------------------------------------------------*/
   /*childContainer5----------------------------------------------------------------*/
-  const [expandSkillsAccordion, setExpandSkillsAccordion] = useState(false);
+  const [expandSkillsAccordion, setExpandSkillsAccordion] =
+    useState<boolean>(false);
   const [submittedSkills, setSubmittedSkills] = useState([
     {
       skills: '',
@@ -251,17 +313,24 @@ function App() {
     setExpandSkillsAccordion((prev) => !prev);
   };
 
-  const handleSkillsInputChange = (event, skillsIndex) => {
+  const handleSkillsInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    skillsIndex: number
+  ) => {
     const previousSkills = [...submittedSkills];
     previousSkills[skillsIndex].skills = event.target.value;
     setSubmittedSkills(previousSkills);
   };
 
-  const preventBubbling = (event) => {
+  const preventBubbling = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     event.stopPropagation();
   };
 
-  const handleAddSkill = (event) => {
+  const handleAddSkills = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     event.stopPropagation();
     const newSubmission = {
       skills: '',
@@ -269,13 +338,17 @@ function App() {
     setSubmittedSkills([...submittedSkills, newSubmission]);
   };
 
-  const handleSkillsDustbinClick = (skillsIndex, event) => {
+  const handleSkillsDustbinClick = (
+    skillsIndex: Number,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     event.stopPropagation();
     const updatedValues = submittedSkills.filter((_, i) => i !== skillsIndex);
     setSubmittedSkills(updatedValues);
   };
 
   /*----------------------------------------------------------------*/
+
   console.log('submittedSkills', submittedSkills);
   return (
     <>
@@ -440,7 +513,7 @@ function App() {
                 </div>
               ))}
 
-              <button id="edu" onClick={handleAddSkill}>
+              <button id="edu" onClick={handleAddSkills}>
                 + Skills
               </button>
             </>
