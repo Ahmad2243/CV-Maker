@@ -1,4 +1,10 @@
-const Summary = ({ inputValue, onInputChange, onClose }) => {
+type SummaryProps = {
+  inputValue: string;
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onClose: () => void;
+};
+
+const Summary = ({ inputValue, onInputChange, onClose }: SummaryProps) => {
   return (
     <>
       <div id="summary-backdrop" onClick={onClose}></div>
