@@ -1,6 +1,3 @@
-import React from 'react';
-import './Education.css';
-
 const Education = ({
   inputInstitutes,
   inputDegree,

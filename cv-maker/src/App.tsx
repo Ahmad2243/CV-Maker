@@ -208,7 +208,7 @@ function App() {
   };
 
   const handleProfessionalClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.stopPropagation();
     setShowProfessionalModal(true);
