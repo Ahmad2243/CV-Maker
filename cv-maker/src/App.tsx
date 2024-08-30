@@ -190,9 +190,11 @@ function App() {
     'Front-End Developer'
   );
   const [inputCompanyName, setInputCompanyName] = useState<string>('Techwards');
-  const [inputDescription, setInputDescription] = useState<string>('');
-  const [inputProStartDate, setInputProStartDate] = useState<string>('2023');
-  const [inputProEndDate, setInputProEndDate] = useState<string>('2026');
+  const [inputDescription, setInputDescription] = useState<string>(
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere minus, saepe iste, nemo dolores necessitatibus perspiciatis velit esse distinctio consequuntur recusandae asperiores sunt veritatis eum quibusdam culpa vero facilis eos?'
+  );
+  const [inputProStartDate, setInputProStartDate] = useState<string>('2024');
+  const [inputProEndDate, setInputProEndDate] = useState<string>('2024');
   const [proSubmittedValues, setProSubmittedValues] = useState<
     {
       proStartDate: string;
@@ -656,7 +658,9 @@ function App() {
       <div className="grid w-[860px] grid-cols-[345px_1fr_0px] grid-rows-[150px_150px_1fr_100px] shadow-[0_4px_8px_rgba(0,0,0,0.2)]">
         <div className="col-start-1 col-end-4 bg-blue-950 text-white flex justify-between p-[10px] items-center">
           <div className="pr-[15px] pl-[30px]">
-            <h1 className="mt-[25px] text-4xl font-bold">{inputName}</h1>
+            <h1 className="mt-[25px] text-4xl font-bold font-serif">
+              {inputName}
+            </h1>
             <p>
               <i>{inputTitle}</i>
             </p>
@@ -668,12 +672,12 @@ function App() {
           </div>
         </div>
         <div className="col-start-1 col-end-4 bg-white text-center border-t-[5px] border-gray-500 p-5">
-          <h1 className="text-4xl font-bold">Summary</h1>
+          <h1 className="text-4xl font-bold font-serif ">Summary</h1>
           <p>{inputValue}</p>
         </div>
 
-        <div className="w-[345px] border-r-[1px] border-black bg-white text-center p-5">
-          <h1 className="text-4xl font-bold">Education</h1>
+        <div className="w-[345px] border-r-[1px] border-black bg-white text-left p-5">
+          <h1 className="text-4xl font-bold py-4 font-serif">Education</h1>
           {submittedValues.map((value, index) => (
             <div key={index}>
               <p>{value.institutes}</p>
@@ -684,14 +688,14 @@ function App() {
             </div>
           ))}
 
-          <h1 className="text-4xl font-bold">Skills</h1>
+          <h1 className="text-4xl font-bold py-4 font-serif">Skills</h1>
           {submittedSkills.map((value, skillsIndex) => (
             <div key={skillsIndex}>
               <h3>{value.skills}</h3>
             </div>
           ))}
 
-          <h1 className="text-4xl font-bold">Certification</h1>
+          <h1 className="text-4xl font-bold py-4 font-serif">Certification</h1>
           {submittedCertificate.map((value, certificateIndex) => (
             <div key={certificateIndex}>
               <h3>{value.certificate}</h3>
@@ -699,8 +703,10 @@ function App() {
           ))}
         </div>
 
-        <div className="border-l-[1px] border-black text-center p-5 bg-white">
-          <h1 className="text-4xl font-bold">Professional Experience</h1>
+        <div className="border-l-[1px] border-black text-left p-5 bg-white">
+          <h1 className="text-4xl font-bold py-4 font-serif">
+            Professional Experience
+          </h1>
           {proSubmittedValues.map((value, proindex) => (
             <div key={proindex}>
               <h3>{value.job}</h3>
