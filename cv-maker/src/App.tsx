@@ -3,7 +3,7 @@ import './App.css';
 import Summary from './Summary';
 import Personal from './Personal';
 import Education from './Education';
-//import Professional from './Professional';
+import Professional from './Professional';
 
 function App() {
   /*childContainer1----------------------------------------------------------------*/
