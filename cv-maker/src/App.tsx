@@ -454,7 +454,7 @@ function App() {
               {submittedValues.map((value, index) => (
                 <div
                   key={index}
-                  className="w-[310px] border-2 border-black rounded-lg mb-4 shadow-[0_4px_8px_rgba(0,0,0,0.4)]"
+                  className="w-[310px] border-2 border-black border-l-0 border-r-0 p-2 mb-4 shadow-[0_4px_8px_rgba(0,0,0,0.4)]"
                   onClick={(event) => handleSubmittedValueClick(index, event)}
                 >
                   {value.institutes}
@@ -510,7 +510,7 @@ function App() {
               {proSubmittedValues.map((value, proindex) => (
                 <div
                   key={proindex}
-                  className="w-[310px] border-2 border-black rounded-lg mb-4 shadow-[0_4px_8px_rgba(0,0,0,0.4)]"
+                  className="w-[310px] border-2 border-black border-l-0 border-r-0 p-2 mb-4 shadow-[0_4px_8px_rgba(0,0,0,0.4)]"
                   onClick={(event) =>
                     handleProSubmittedValueClick(proindex, event)
                   }
