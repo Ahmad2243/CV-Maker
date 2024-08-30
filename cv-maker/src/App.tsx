@@ -400,11 +400,13 @@ function App() {
   /*----------------------------------------------------------------*/
   return (
     <>
-      <div className="container1">
-        <div className="childContainer1">
-          <button onClick={handlePersonalButtonClick}>
-            <h2>Personal Details</h2>
-          </button>
+      <div className="flex justify-center flex-col w-[400px]">
+        <div className="w-[330px] bg-white border-2 border-black mb-5 rounded-lg p-[10px] shadow-[0_4px_8px_rgba(0,0,0,0.2)]">
+          <div onClick={handlePersonalButtonClick}>
+            <h2 className="text-black text-2xl font-semibold my-2 cursor-pointer">
+              Personal Details
+            </h2>
+          </div>
 
           {showPersonal && (
             <Personal
@@ -423,10 +425,12 @@ function App() {
           )}
         </div>
         *-----------------------------------------------------------------*
-        <div className="childContainer2">
-          <button onClick={handleButtonClick}>
-            <h2>Summary</h2>
-          </button>
+        <div className="w-[330px] bg-white border-2 border-black mb-5 rounded-lg p-[10px] shadow-[0_4px_8px_rgba(0,0,0,0.2)]">
+          <div onClick={handleButtonClick}>
+            <h2 className="text-black text-2xl font-semibold my-2 cursor-pointer">
+              Summary
+            </h2>
+          </div>
 
           {showSummary && (
             <Summary
@@ -437,31 +441,40 @@ function App() {
           )}
         </div>
         *-----------------------------------------------------------------*
-        <div onClick={handleExpandEducation} className="childContainer3">
-          <h2>Education</h2>
+        <div
+          onClick={handleExpandEducation}
+          className="w-[330px] bg-white border-2 border-black mb-5 rounded-lg p-[10px] shadow-[0_4px_8px_rgba(0,0,0,0.2)]"
+        >
+          <h2 className="text-black text-2xl font-semibold my-2 cursor-pointer">
+            Education
+          </h2>
 
           {expandEducationAccordion && (
             <>
               {submittedValues.map((value, index) => (
                 <div
                   key={index}
-                  id="submitted-value"
+                  className="w-[310px] border-2 border-black rounded-lg mb-4 shadow-[0_4px_8px_rgba(0,0,0,0.4)]"
                   onClick={(event) => handleSubmittedValueClick(index, event)}
                 >
                   {value.institutes}
                   <button
                     type="button"
-                    id="dustbin"
+                    className="bg-white hover:border-transparent px-0 py-0"
                     onClick={(event) => handleDustbinClick(index, event)}
                   >
                     🗑️
                   </button>
                 </div>
               ))}
-
-              <button id="edu" onClick={handleEducationClick}>
-                + Education Detail
-              </button>
+              <div className="flex w-[310px] justify-center">
+                <button
+                  className="border-2 border-black rounded-[50px] cursor-pointer hover:bg-slate-100 hover:border-gray-400"
+                  onClick={handleEducationClick}
+                >
+                  + Education Detail
+                </button>
+              </div>
             </>
           )}
 
@@ -484,15 +497,20 @@ function App() {
           )}
         </div>
         *-----------------------------------------------------------------*
-        <div onClick={handleExpandProfessional} className="childContainer4">
-          <h2>Professional Experience</h2>
+        <div
+          onClick={handleExpandProfessional}
+          className="w-[330px] bg-white border-2 border-black mb-5 rounded-lg p-[10px] shadow-[0_4px_8px_rgba(0,0,0,0.2)]"
+        >
+          <h2 className="text-black text-2xl font-semibold my-2 cursor-pointer">
+            Professional Experience
+          </h2>
 
           {expandProfessionalAccordion && (
             <>
               {proSubmittedValues.map((value, proindex) => (
                 <div
                   key={proindex}
-                  id="submitted-value"
+                  className="w-[310px] border-2 border-black rounded-lg mb-4 shadow-[0_4px_8px_rgba(0,0,0,0.4)]"
                   onClick={(event) =>
                     handleProSubmittedValueClick(proindex, event)
                   }
@@ -500,17 +518,21 @@ function App() {
                   {value.job} at {value.company}
                   <button
                     type="button"
-                    id="dustbin"
+                    className="bg-white hover:border-transparent px-0 py-0"
                     onClick={(event) => handleProDustbinClick(proindex, event)}
                   >
                     🗑️
                   </button>
                 </div>
               ))}
-
-              <button id="edu" onClick={handleProfessionalClick}>
-                + Experience
-              </button>
+              <div className="flex w-[310px] justify-center">
+                <button
+                  className="border-2 border-black rounded-[50px] cursor-pointer hover:bg-slate-100 hover:border-gray-400"
+                  onClick={handleProfessionalClick}
+                >
+                  + Experience
+                </button>
+              </div>
             </>
           )}
 
@@ -533,14 +555,22 @@ function App() {
           )}
         </div>
         *-----------------------------------------------------------------*
-        <div onClick={handleExpandSkills} className="childContainer5">
-          <h2>Skills</h2>
+        <div
+          onClick={handleExpandSkills}
+          className="w-[330px] bg-white border-2 border-black mb-5 rounded-lg p-[10px] shadow-[0_4px_8px_rgba(0,0,0,0.2)]"
+        >
+          <h2 className="text-black text-2xl font-semibold my-2 cursor-pointer">
+            Skills
+          </h2>
           {expandSkillsAccordion && (
             <>
               {submittedSkills.map((skill, skillsIndex) => (
-                <div key={skillsIndex} id="submitted-skills">
+                <div
+                  key={skillsIndex}
+                  className="w-[310px] border-2 border-black rounded-lg mb-4 shadow-[0_4px_8px_rgba(0,0,0,0.4)]"
+                >
                   <input
-                    className="inputSkills"
+                    className="px-1 py-[2px] mx-1 my-2 focus:outline-none focus:border-transparent"
                     type="text"
                     value={skill.skills}
                     onChange={(event) =>
@@ -551,7 +581,7 @@ function App() {
                   ></input>
                   <button
                     type="button"
-                    id="dustbin"
+                    className="bg-white hover:border-transparent px-0 py-0"
                     onClick={(event) =>
                       handleSkillsDustbinClick(skillsIndex, event)
                     }
@@ -560,23 +590,35 @@ function App() {
                   </button>
                 </div>
               ))}
-
-              <button id="edu" onClick={handleAddSkills}>
-                + Skills
-              </button>
+              <div className="flex w-[310px] justify-center">
+                <button
+                  className="border-2 border-black rounded-[50px] cursor-pointer hover:bg-slate-100 hover:border-gray-400"
+                  onClick={handleAddSkills}
+                >
+                  + Skills
+                </button>
+              </div>
             </>
           )}
         </div>
         *-----------------------------------------------------------------*
-        <div onClick={handleExpandCertificate} className="childContainer6">
-          <button>
-            <h2>Certifications</h2>
+        <div
+          onClick={handleExpandCertificate}
+          className="w-[330px] bg-white border-2 border-black mb-5 rounded-lg p-[10px] shadow-[0_4px_8px_rgba(0,0,0,0.2)]"
+        >
+          <div>
+            <h2 className="text-black text-2xl font-semibold my-2 cursor-pointer">
+              Certifications
+            </h2>
             {expandCertificateAccordion && (
               <>
                 {submittedCertificate.map((certificate, certificateIndex) => (
-                  <div key={certificateIndex} id="submitted-skills">
+                  <div
+                    key={certificateIndex}
+                    className="w-[310px] border-2 border-black rounded-lg mb-4 shadow-[0_4px_8px_rgba(0,0,0,0.4)]"
+                  >
                     <input
-                      className="inputCertificate"
+                      className="px-1 py-[2px] mx-1 my-2 focus:outline-none focus:border-transparent"
                       type="text"
                       value={certificate.certificate}
                       onChange={(event) =>
@@ -587,7 +629,7 @@ function App() {
                     ></input>
                     <button
                       type="button"
-                      id="dustbin"
+                      className="bg-white hover:border-transparent px-0 py-0"
                       onClick={(event) =>
                         handleCertificateDustbinClick(certificateIndex, event)
                       }
@@ -596,38 +638,42 @@ function App() {
                     </button>
                   </div>
                 ))}
-
-                <button id="edu" onClick={handleAddCertificate}>
-                  + Skills
-                </button>
+                <div className="flex w-[310px] justify-center">
+                  <button
+                    className="border-2 border-black rounded-[50px] cursor-pointer hover:bg-slate-100 hover:border-gray-400"
+                    onClick={handleAddCertificate}
+                  >
+                    + Certification
+                  </button>
+                </div>
               </>
             )}
-          </button>
+          </div>
         </div>
         *-----------------------------------------------------------------*
       </div>
 
-      <div className="container2">
-        <div className="item1">
-          <div className="childItem1">
-            <h1 className="h1Name">{inputName}</h1>
+      <div className="grid w-[860px] grid-cols-[345px_1fr_0px] grid-rows-[150px_150px_1fr_100px] shadow-[0_4px_8px_rgba(0,0,0,0.2)]">
+        <div className="col-start-1 col-end-4 bg-blue-950 text-white flex justify-between p-[10px] items-center">
+          <div className="pr-[15px] pl-[30px]">
+            <h1 className="mt-[25px] text-4xl font-bold">{inputName}</h1>
             <p>
               <i>{inputTitle}</i>
             </p>
           </div>
-          <div className="childItem2">
+          <div className="text-end">
             <p>{inputNumber} &nbsp;&nbsp;&nbsp;&nbsp; 🕻&nbsp;&nbsp;</p>
             <p>{inputEmail} &nbsp;&nbsp;&nbsp; ✉️</p>
             <p>{inputLocation} &nbsp;&nbsp;&nbsp; 📍</p>
           </div>
         </div>
-        <div className="item2">
-          <h1>Summary</h1>
+        <div className="col-start-1 col-end-4 bg-white text-center border-t-[5px] border-gray-500 p-5">
+          <h1 className="text-4xl font-bold">Summary</h1>
           <p>{inputValue}</p>
         </div>
 
-        <div className="item3">
-          <h1>Education</h1>
+        <div className="w-[345px] border-r-[1px] border-black bg-white text-center p-5">
+          <h1 className="text-4xl font-bold">Education</h1>
           {submittedValues.map((value, index) => (
             <div key={index}>
               <p>{value.institutes}</p>
@@ -638,14 +684,14 @@ function App() {
             </div>
           ))}
 
-          <h1>Skills</h1>
+          <h1 className="text-4xl font-bold">Skills</h1>
           {submittedSkills.map((value, skillsIndex) => (
             <div key={skillsIndex}>
               <h3>{value.skills}</h3>
             </div>
           ))}
 
-          <h1>Certification</h1>
+          <h1 className="text-4xl font-bold">Certification</h1>
           {submittedCertificate.map((value, certificateIndex) => (
             <div key={certificateIndex}>
               <h3>{value.certificate}</h3>
@@ -653,8 +699,8 @@ function App() {
           ))}
         </div>
 
-        <div className="item4">
-          <h1>Professional Experience</h1>
+        <div className="border-l-[1px] border-black text-center p-5 bg-white">
+          <h1 className="text-4xl font-bold">Professional Experience</h1>
           {proSubmittedValues.map((value, proindex) => (
             <div key={proindex}>
               <h3>{value.job}</h3>
@@ -666,7 +712,7 @@ function App() {
           ))}
         </div>
 
-        <div className="item5"></div>
+        <div className="col-start-1 col-end-4 bg-white text-center p-5"></div>
       </div>
     </>
   );
